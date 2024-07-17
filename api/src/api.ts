@@ -1,25 +1,17 @@
 import express from "express";
 import dotenv from "dotenv";
 import prisma from "../prisma/prisma";
+import cors from "cors";
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
 const app = express();
-app.use(express.json());
+app.use(bodyParser.json());
+app.use(cookieParser());
 dotenv.config();
 
-// app.get("/", async(req,res)=>{
-//     console.log(process.env.DATABASE_URL)
-//     await prisma.user.create({
-//         data:{
-//             name: "Barath",
-//             email: "barath0121@gmail.com",
-//             password : "itunes@1921"
-//         }
-//     })
-//     res.send()
-// })
+import userRoute from "./routes/auth.route";
 
-import userRoute from "./routes/user.route";
-
-app.use("/api", userRoute)
+app.use("/api/v1", userRoute)
 
 app.listen(3001, ()=>{
     console.log("server started")

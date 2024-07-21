@@ -18,7 +18,5 @@ export const verifyToken = (req:Request, res:Response, next:NextFunction) => {
     const payload = decoded as JwtPayload;
     // @ts-ignore
     req.userid = payload.id;
-    // @ts-ignore
-    console.log(req.userid)
     next();
 };
